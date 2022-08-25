@@ -3,6 +3,7 @@ const{ loadProducts,storeProducts } = require('../data/dbModules');
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const controller = {
+
 	// Root - Show all products
 	index: (req, res) => {
 		// Do the magic
@@ -34,13 +35,13 @@ const controller = {
 	// Create -  Method to store
 	store: (req, res) => {
 		// Do the magic
-		const{name, price, discount, desciption, category}= req.body;
+		const{name, price, discount, description, category}= req.body;
 		let products = loadProducts();
 		const newProduct = {
 			id : products[products.length -1].id +1,
 			name : name.trim(),
 			price : +price,
-			desciption,
+			description :  description.trim(),
 			discount : +discount,
 			category,
 			Image : 'default-image.png'
@@ -63,14 +64,14 @@ const controller = {
 	// Update - Method to update
 	update: (req, res) => {
 		// Do the magic
-		const{name, price, discount, desciption, category}= req.body;
+		const{name, price, discount, description, category}= req.body;
 		let productsModify = loadProducts().map(product =>{
 			if(product.id === +req.params.id){
 				return{
 					id : product.id,
 					name : name.trim(),
 					price : +price,
-					desciption,
+					description:description.trim(), 
 					discount : +discount,
 					category,
 					Image : product.Image
