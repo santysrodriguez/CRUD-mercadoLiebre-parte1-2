@@ -34,22 +34,22 @@ const controller = {
 	
 	// Create -  Method to store
 	store: (req, res) => {
-		// Do the magic
-		const{name, price, discount, description, category}= req.body;
-		let products = loadProducts();
+
+		const {name, price, discount, description, category} = req.body;
+		let products = loadProducts()
 		const newProduct = {
 			id : products[products.length -1].id +1,
-			name : name.trim(),
-			price : +price,
-			description :  description.trim(),
+			name: name.trim(),
+			price: +price,
+			description : description.trim(),
 			discount : +discount,
 			category,
-			Image : 'default-image.png'
+			image : 'default-image.png'
 		}
-		productsModify = [...products, newProduct];
-
+		productsModify = [...products,newProduct];
 		storeProducts(productsModify);
-		return res.redirect('/products')
+
+		return res.redirect('/products');
 	},
 
 	// Update - Form to edit
@@ -74,12 +74,12 @@ const controller = {
 					description:description.trim(), 
 					discount : +discount,
 					category,
-					Image : product.Image
+					image : product.image
 					
 					}
 			}
-			return product
-		})
+			return product;
+		});
 		storeProducts(productsModify);
 		return res.redirect('/products/detail/' + req.params.id)
 	},
@@ -89,7 +89,7 @@ const controller = {
 		// Do the magic
 		let productsModify = loadProducts().filter(product => product.id !== +req.params.id);
 		storeProducts(productsModify);
-		return res.redirect('/products' + req.params.id)
+		return res.redirect('/products')
 
 	}
 };
