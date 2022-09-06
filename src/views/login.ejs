@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head', {
+        title : 'Formulario de Registro'
+    })  %>
+<body>
+    <%- include('./partials/headerNavbar')  %>
+
+    <main style="margin: 100px; margin-left: 250px;">
+            <form action="" method="post">
+                <label style="font-size: 15px; margin-left: 20px;" for="email">Correo Electronico:</label>
+            <input class="form__input" type="email" id="email" name="email" value="<%= locals.old && old.email ? old.email : null %>">
+                    <small style="color: red;font-size: 12px;" class="form__text--error"><%= locals.errors && errors.email ? errors.email.msg :null %></small>
+
+            <label style="font-size: 15px; margin-left: 20px;  " for="password">Contraseña</label>
+            <input class="form__input" type="password" id="password" name="password">
+            <small style="color: red;font-size: 12px;" class="form__text--error"><%= locals.errors && errors.password ? errors.password.msg :null %></small>
+
+            <button type="submit">Ingreesar</button>
+            </form>
+    </main>
+    <%- include('./partials/footer')  %>
+
+    
+</body>
+</html>
